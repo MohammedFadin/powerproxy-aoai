@@ -1,0 +1,2 @@
+Any file in this folder except *.example.* files, Python scripts and this file will be ignored by
+git to avoid secrets being committed to git.

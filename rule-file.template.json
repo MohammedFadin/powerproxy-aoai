@@ -1,0 +1,67 @@
+{
+    "properties": {
+        "dataCollectionEndpointId": "##dataCollectionEndpointId##",
+        "streamDeclarations": {
+            "Custom-AzureOpenAIUsage_PP_CL": {
+                "columns": [
+                    {
+                        "name": "RequestReceivedUtc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "Client",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "IsStreaming",
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "PromptTokens",
+                        "type": "int"
+                    },
+                    {
+                        "name": "CompletionTokens",
+                        "type": "int"
+                    },
+                    {
+                        "name": "TotalTokens",
+                        "type": "int"
+                    },
+                    {
+                        "name": "AoaiRoundtripTimeMS",
+                        "type": "real"
+                    },
+                    {
+                        "name": "AoaiRegion",
+                        "type": "string"
+                    },
+                    {
+                        "name": "AoaiEndpointName",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    },
+    "destinations": {
+        "logAnalytics": [
+            {
+                "workspaceResourceId": "##workspaceResourceId##",
+                "name": "LogAnalyticsDest"
+            }
+        ]
+    },
+    "dataFlows": [
+        {
+            "streams": [
+                "Custom-AzureOpenAIUsage_PP_CL"
+            ],
+            "destinations": [
+                "LogAnalyticsDest"
+            ],
+            "transformKql": "source | extend TimeGenerated = now()",
+            "outputStream": "Custom-AzureOpenAIUsage_PP_CL"
+        }
+    ]
+}
